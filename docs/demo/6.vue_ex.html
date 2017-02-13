@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 实例</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+    <input type="button" value="按钮" v-on:click="a=false">
+    <input type="button" value="按钮" v-on:click="show()">
+    <div style="width:200px; height:200px; background-color:#f00;" v-show="a"></div>
+</div>
+<script>
+    var c = new Vue({
+        el : "#box",
+        data : {
+            msg : "welcome Vue!",
+            arr : ["a", "b", "c"],
+            json : {"a" : 123, "b" : 456},
+            a : true
+        },
+        methods : {
+            show : function (){
+                this.a = false;
+            }
+
+        }
+    })
+</script>
+</body>
+</html>
