@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 开始</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+    <input type="text" v-model="msg">
+    <input type="text" v-model="msg">
+    <br />
+    {{msg}}
+</div>
+<script>
+    var c = new Vue({
+        el : "#box",
+        data : {
+            msg : "welcome Vue!"
+        }
+    })
+</script>
+</body>
+</html>
