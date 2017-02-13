@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 循环 v-for</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+    <input type="text" v-model="msg">
+    <input type="text" v-model="msg">
+    <br />
+    {{msg}}
+    <ul>
+        <li v-for="value in arr">{{value}}</li>
+    </ul>
+    <hr>
+    <ul>
+        <li v-for="v in json">{{v}} {{$index}} {{$key}}</li>
+    </ul>
+    <hr>
+    <ul>
+        <li v-for="(k,v) in json">{{v}} {{$index}} {{k}}</li>
+    </ul>
+</div>
+<script>
+    var c = new Vue({
+        el : "#box",
+        data : {
+            msg : "welcome Vue!",
+            arr : ["a", "b", "c"],
+            json : {"a" : 123, "b" : 456}
+        }
+    })
+</script>
+</body>
+</html>
