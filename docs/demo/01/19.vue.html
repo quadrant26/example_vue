@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 交互 post</title>
+<script src="../../js/vue.js"></script>
+<script src="../../js/vue-resource.min.js"></script>
+</head>
+<body>
+
+<div id="box">
+    <input type="button" value="按钮" @click="get()">
+</div>
+<script>
+var c = new Vue({
+    el : "#box",
+    data : {
+        // msg : "<h2>模板字符串</h2>"
+    },
+    methods : {
+        get : function (){
+            this.$http.post('post.php', {
+                params : {
+                    a : 1,
+                    b : 2
+                }
+
+            },{
+                emulateJSON : true
+            }).then(function (res){
+                alert("成功了")
+                alert(res.data)
+            }, function (res){
+                console.log(res.data)
+                console.log(res.status)
+            })
+        }
+    }
+    /**
+     * 交互
+     *  引入 vue-resouce
+     *  post 方式
+     *
+     *      this.$http.post(url[, data, {emulateJSON : true}]).then(function (res){
+     *          // 成功了
+     *      }, function (res){
+     *          // 失败了
+     *      })
+     */
+})
+</script>
+</body>
+</html>
