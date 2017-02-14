@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 事件</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+    <input type="button" value="按钮" @click="show()">
+</div>
+<script>
+    var c = new Vue({
+        el : "#box",
+        data : {
+            msg : "welcome Vue!",
+            arr : ["a", "b", "c"],
+            json : {"a" : 123, "b" : 456}
+        },
+        methods : {
+            show : function (){
+                alert(1);
+            },
+
+        }
+    })
+</script>
+</body>
+</html>
