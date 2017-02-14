@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 事件</title>
+<script src="../../js/vue.js"></script>
+<style>
+.red{ color:#f00;}
+.blue{ background-color: blue;}
+</style>
+</head>
+<body>
+
+<div id="box">
+    <strong :style="[c, b]">sadlkfjasl</strong>
+    <br><br>
+    <strong :style="{color:'red'}">sadlkfjasl</strong>
+    <br><br>
+
+    <strong :style="a">sadlkfjasl</strong>
+    <br><br>
+</div>
+<script>
+var c = new Vue({
+        el : "#box",
+        data : {
+            c : {color:'red'},
+            b : {background : "blue"},
+            a : {
+                color: 'red',
+                background: 'blue'
+            }
+
+        }
+        /**
+         * 操作属性
+         * 1. src = {{url}}  会报错 404
+         * 2. v-bind:src="url"
+         * 3. :src 简写
+         *
+         * style
+         *  :style
+         *  v-bind:style
+         *
+         *  :style = "[red, b, c, d]"  red b 是 样式表的 class
+         *
+         *  :style = {red:a, blue:false}"  // red blue 为 className
+         *
+         *  :style = "json"
+         *
+         */
+    })
+</script>
+</body>
+</html>
