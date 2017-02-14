@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 事件</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+    <div>
+        <input type="text" value="按钮" @keydown.enter="show($event)">
+    </div>
+</div>
+<script>
+    var c = new Vue({
+        el : "#box",
+        data : {
+            msg : "welcome Vue!",
+            arr : ["a", "b", "c"],
+            json : {"a" : 123, "b" : 456}
+        },
+
+        methods : {
+            show : function (ev){
+                //alert(ev.clientX);
+                //alert(ev.keyCode);
+                alert("按了enter键");
+
+            }
+            /**
+             * 阻止事件冒泡
+             *  1. @click.stop = fm
+             *  2. ev.cancelBubble = true
+             *
+             * 阻止默认行为
+             *  1. ev.preventDefault();
+             *  2. @contextmenu.prevent
+             *
+             * 键盘事件
+             *  1. @keydown
+             *  2. @keyup
+             *  3. @keyup.enter
+             *
+             *  上，下， 左， 右
+             *  @keyup/keydown.left
+             *  @keyup/keydown.right
+             *  @keyup/keydown.up
+             *  @keyup/keydown.down
+             */
+
+        }
+    })
+</script>
+</body>
+</html>
