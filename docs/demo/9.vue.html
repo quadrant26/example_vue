@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 事件</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+    <div @click="show2()">
+        <input type="button" value="按钮" @click.stop="show(12)">
+    </div>
+</div>
+<script>
+    var c = new Vue({
+        el : "#box",
+        data : {
+            msg : "welcome Vue!",
+            arr : ["a", "b", "c"],
+            json : {"a" : 123, "b" : 456}
+        },
+
+        methods : {
+            show : function (b){
+                //alert(ev.clientX);
+                alert(b);
+            },
+            show2 : function (){
+                alert(2);
+            }
+            /**
+             * 阻止事件冒泡
+             *  1. @click.stop = fm
+             *  2. ev.cancelBubble = true
+             *
+             * 阻止默认行为
+             *  1. ev.preventDefault();
+             *  2. @contextmenu.prevent
+             *
+             * 键盘事件
+             *  1. @keydown
+             *  2. @keyup
+             *
+             */
+
+        }
+    })
+</script>
+</body>
+</html>
