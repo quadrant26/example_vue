@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 事件</title>
+<script src="../../js/vue.js"></script>
+<style>
+.red{ color:#f00;}
+.blue{ background-color: blue;}
+</style>
+</head>
+<body>
+
+<div id="box">
+    <strong :class="red">askdjfhajksd</strong>
+    <br><br>
+    <strong :class="{red:true, blue:true}">1231231</strong>
+    <br><br>
+    <strong :class="{red:false, blue:true}">1231231</strong>
+    <br><br>
+    <strong :class="{red:a, blue:b}">1231231</strong>
+    <br><br>
+    <strong :class="json">1231231</strong>
+</div>
+<script>
+var c = new Vue({
+        el : "#box",
+        data : {
+            url : "http://p0.so.qhmsg.com/bdr/_240_/t012378cd7d70497f45.jpg",
+            width : "200",
+            red : "red",
+            a : true,
+            b : false,
+            json : {
+                red : true,
+                blue : true
+            }
+
+        }
+        /**
+         * 操作属性
+         * 1. src = {{url}}  会报错 404
+         * 2. v-bind:src="url"
+         * 3. :src 简写
+         *
+         * class
+         *  :class
+         *  v-bind:class
+         *
+         *  :class = "red" red 是数据
+         *  :class = "[red, b, c, d]"  red b 是 样式表的 class
+         *
+         *  :class = {red:a, blue:false}"  // red blue 为 className
+         *
+         *  :class = "json"
+         *
+         */
+    })
+</script>
+</body>
+</html>
