@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 过滤</title>
+<script src="../../js/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+    {{'welcome'|uppercase}}
+    <br>
+    {{'WELCOME'|lowercase}}
+    <br>
+    {{'welcome'|capitalize}}
+    <br>
+    {{'WELCOME'|lowercase|capitalize}}
+
+    <br>
+    {{'232423'|currency}}
+    <br>
+    {{'232423'|currency '￥'}}
+</div>
+<script>
+var c = new Vue({
+    el : "#box",
+    data : {
+        // msg : "<h2>模板字符串</h2>"
+    }
+    /**
+     * 过滤器
+     * {{msg | filterA}}
+     * {{msg | filterA|filterB}}
+     *
+     *  uppercase
+     *  lowercase
+     *  capitalize
+     *  currency  美元符号
+     *
+     */
+})
+</script>
+</body>
+</html>
