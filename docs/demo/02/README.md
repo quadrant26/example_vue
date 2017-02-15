@@ -4,14 +4,14 @@ vue-resource
 
     this.$http({
 
-        url : url,
+    url : url,
 
-        method : 'post|get',
+    method : 'post|get',
 
-        params|data : {},
+    params|data : {},
 
-        method :
+    method :
 
-        jsonp : callbackname
+    jsonp : callbackname
 
     }).then(fnsuess(res), fnfailed(res))
