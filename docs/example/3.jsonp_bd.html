@@ -56,7 +56,6 @@ var vue = new Vue({
             if(this.nowIndex < 0)this.nowIndex = this.myData.length-1;
         },
         keyenter : function (){
-            //alert(123);
             this.word = this.myData[this.nowIndex];
             window.open("https://www.baidu.com/s?wd="+this.word);
         }
