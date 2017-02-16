@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../js/vue.js"></script>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.21/vue.js"></script>-->
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" v-model="a">
+    <span>a => {{a}}</span>
+    <p>b = {{b}}</p>
+</div>
+<script>
+var vm = new Vue({
+    el : "#box",
+    data : {
+        a : 1
+    },
+    computed : {
+        b : {
+            get : function (){
+                return this.a+2
+            },
+            set : function (val){
+                this.a = val
+            }
+        }
+    }
+})
+
+    console.log(vm.$el)
+    console.log(vm.$data)
+</script>
+</body>
+</html>
