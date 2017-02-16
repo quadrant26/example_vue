@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器 limitBy</title>
+    <script src="../../js/vue.js"></script>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.21/vue.js"></script>-->
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" value="添加" @keyup="show | debounce 2000">
+    <ul>
+        <li v-for="val in arr | limitBy 2">{{val}}</li>
+    </ul>
+    <ul>
+        <li v-for="val in arr | limitBy 2 1">{{val}}</li>
+    </ul>
+</div>
+<script>
+var vm = new Vue({
+    aa : 11,  // 自定义属性
+    data : {
+        arr : [1, 2, 3, 4, 5]
+    },
+    methods : {
+        show : function(){
+            alert(1);
+        }
+    }
+}).$mount("#box")
+
+</script>
+</body>
+</html>
