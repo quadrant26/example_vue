@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../js/vue.js"></script>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.21/vue.js"></script>-->
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="button" value="添加" @click="add()">
+    <ul>
+        <li v-for="val in arr" track-by="$index">{{val}}</li>
+    </ul>
+</div>
+<script>
+var vm = new Vue({
+    aa : 11,  // 自定义属性
+    data : {
+        arr : ["apple", "orange", "pear"]
+    },
+    methods : {
+        add : function (){
+            this.arr.push("tomato");
+        }
+    }
+}).$mount("#box")
+
+</script>
+</body>
+</html>
