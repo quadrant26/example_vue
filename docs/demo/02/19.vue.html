@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义过滤器</title>
+    <script src="../../js/vue.js"></script>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.21/vue.js"></script>-->
+    <style>
+        zns-red{
+            width:100px; height:100px; background:gray;display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <zns-red></zns-red>
+</div>
+<script>
+
+Vue.elementDirective('zns-red', {
+    bind : function (){
+        this.el.style.background = 'red';
+    }
+})
+
+var vm = new Vue({
+    el : "#box",
+    data : {
+        a : 'blue'
+    }
+});
+
+</script>
+</body>
+</html>
