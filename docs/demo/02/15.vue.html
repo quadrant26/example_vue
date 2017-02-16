@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义过滤器</title>
+    <script src="../../js/vue.js"></script>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.21/vue.js"></script>-->
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" v-model="a">
+    <p>{{a | date }}</p>
+</div>
+<script>
+
+Vue.filter('date', function (n){
+    var oDate = new Date(n);
+    return oDate.getFullYear() + '-' + oDate.getMonth()+1 + "-" + oDate.getDate() + " " + oDate.getHours() + ":" + oDate.getMinutes() + ":" + oDate.getSeconds();
+})
+
+var vm = new Vue({
+    aa : 11,  // 自定义属性
+    data : {
+        a : Date.now()
+    },
+    methods : {
+        show : function(){
+            alert(1);
+        }
+    }
+}).$mount("#box")
+
+</script>
+</body>
+</html>
