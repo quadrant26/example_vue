@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器</title>
+    <script src="../../js/vue.js"></script>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.21/vue.js"></script>-->
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" value="添加" @keyup="show | debounce 2000">
+</div>
+<script>
+var vm = new Vue({
+    aa : 11,  // 自定义属性
+    data : {
+        arr : ["apple", "orange", "pear"]
+    },
+    methods : {
+        show : function(){
+            alert(1);
+        }
+    }
+}).$mount("#box")
+
+</script>
+</body>
+</html>
