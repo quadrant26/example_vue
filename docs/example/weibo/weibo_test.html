@@ -1,0 +1,213 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>智能课堂 —— 微博ajax接口测试 - www.zhinengshe.com</title>
+<link href="style/weibo.css" rel="stylesheet" type="text/css" />
+</head>
+<script src="js/vue.js"></script>
+<!--<script src="js/vue-resource.min.js"></script>-->
+<!--<script src="//cdn.bootcss.com/vue-resource/0.9.0/vue-resource.min.js"></script>-->
+<script src="//cdn.bootcss.com/vue-resource/0.6.1/vue-resource.min.js"></script>
+<script>
+window.onload = function () {
+    var URL = "weibo.php";
+    var vue = new Vue({
+        el: "#box",
+        data: {
+            t1: "",
+            myData: [],
+            myPage: [],
+            pagecount : 0,
+            nowIndex: 0,
+            page: 0
+        },
+        methods: {
+            add: function () {
+                this.$http({
+                    url: URL,
+                    method: "get",
+                    data: {
+                        act: "add",
+                        content: this.t1
+                    }
+                }).then(function (res) {
+
+                    var time = this.times(res.data.time);
+                    this.myData.unshift({
+                        id: res.data.id,
+                        content: this.t1,
+                        acc: 0,
+                        ref: 0,
+                        time: time
+                    });
+                    this.t1 = "";
+
+                }, function (res) {
+                    console.log(res, "获取失败")
+                })
+            },
+            //获取页码
+            getPage: function () {
+                this.$http({
+                    url: URL,
+                    data: {
+                        act: 'get_page_count'
+                    }
+                }).then(function (res) {
+                    this.pagecount = res.data.count
+                    for (var i = 0; i < this.pagecount; i++) {
+                        this.myPage.push(i);
+                    }
+                }, function (res) {
+                    // 失败
+                });
+            },
+            // 获取全部的数据
+            get: function (page) {
+
+                this.nowIndex = page;
+
+                this.$http({
+                    url: URL,
+                    method: 'get',
+                    data: {
+                        act: 'get',
+                        page: page+1
+                    }
+                }).then(function (res) {
+                    var data = eval(res.data);
+                    this.myData = [];
+                    for (var i = 0; i < data.length; i++) {
+                        this.myData.push({
+                            id: data[i].id,
+                            content: data[i].content,
+                            acc: data[i].acc,
+                            ref: data[i].ref,
+                            time: this.times(data[i].time)
+                        })
+                    };
+                }, function (res) {
+                    // 获取失败
+                });
+
+            },
+            setacc: function (ev, id) {
+                this.$http({
+                    url: URL,
+                    data: {
+                        act: 'acc',
+                        id: id
+                    }
+                }).then(function (res) {
+                    if(res.data.error == 0){
+                        ev.target.innerHTML = parseInt(ev.target.innerHTML) + 1;
+                    }
+                }, function (res) {
+
+                })
+            },
+            setref: function (ev, id) {
+                this.$http({
+                    url: URL,
+                    data: {
+                        act: 'ref',
+                        id: id
+                    }
+                }).then(function (res) {
+                    if(res.data.error == 0){
+                        ev.target.innerHTML = parseInt(ev.target.innerHTML) + 1;
+                    }
+                }, function (res) {
+
+                })
+            },
+            add0: function (n) {
+                return n < 10 ? "0" + n : n;
+            },
+            times: function (time) {
+                var time = new Date(time * 1000);
+                var y = time.getFullYear();
+                var m = time.getMonth() + 1;
+                var d = time.getDate();
+                var h = time.getHours();
+                var mm = time.getMinutes();
+                var s = time.getSeconds();
+                return y + '-' + this.add0(m) + '-' + this.add0(d) + ' ' + this.add0(h) + ':' + this.add0(mm) + ':' + this.add0(s);
+            }
+        },
+        created: function () {
+            this.getPage();
+            this.get(this.page);
+        }
+    });
+}
+</script>
+<body>
+<div class="znsArea" id="box">
+<!--留言-->
+     <div class="takeComment">
+        <textarea name="textarea" class="takeTextField" v-model="t1" id="tijiaoText"></textarea>
+        <div class="takeSbmComment">
+            <input type="button" class="inputs" value="" id="btn_snd" @click="add()" />
+            <span>(可按 Enter 回复)</span>
+        </div>
+    </div>
+<!--已留-->
+    <div class="commentOn">
+        <div class="noContent" v-if="myData.length==0">暂无留言</div>
+        <div class="messList">
+        	<div class="reply" v-for="val in myData" v-if="myData.length>=1" id="{{val.id}}">
+                <p class="replyContent">{{val.content}}</p>
+                <p class="operation">
+                    <span class="replyTime">{{val.time}}</span>
+                    <span class="handle">
+                    	<a href="javascript:;" class="top" @click="setacc($event, val.id)">{{val.acc}}</a>
+                        <a href="javascript:;" class="down_icon" @click="setref($event, val.id)">{{val.ref}}</a>
+                        <a href="javascript:;" class="cut">删除</a>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="page">
+            {{nowindex}}
+        	<a href="javascript:;" v-for="page in myPage" :class="{active:$index==nowIndex}" @click="get($index)">{{page+1}}</a>
+        </div>
+    </div>
+</div>
+<!--<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+<script>
+    $("#btn_snd").on("click", function (){
+        $.ajax({
+            type : 'get',
+            url : "weibo.php",
+            data : {
+                act : "add",
+                content : $("#tijiaoText").val()
+            },
+            success : function (data){
+                console.log(data)
+            },
+            error : function(data){
+                console.log(data)
+            }
+        })
+    })
+
+    $.ajax({
+        type : 'get',
+        url : "weibo.php",
+        data : {
+            act : "get",
+            page : 3
+        },
+        success : function (data){
+            console.log(data)
+        },
+        error : function(data){
+            console.log(data)
+        }
+    })
+</script>-->
+</body>
+</html>
