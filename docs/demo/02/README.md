@@ -84,3 +84,94 @@ vue-resource
 6. 循环
 
     v-for="value in arr"  track-by="$index/uid"     (提高循环的性能) 解决添加重复的数据循环报错
+
+7. 过滤器
+
+    debounce        配合时间，延时进行
+
+    数据配合使用过滤器
+
+        limitBy num     取前几条数据
+
+        limitBy 参数(取几个, 从哪开始)
+
+        filterBy str        取 包含 str 的数据
+
+        orderBy             排序
+
+          orderBy 1/-1/2          1-> 正序 2-> 倒序
+
+    自定义过滤器
+
+        Vue.filter(filtername, callback(){})
+
+    双向过滤器
+
+        Vue.filter(filterName, {
+
+            read : function (str){
+                // model -> view
+                return
+            },
+
+            write : function (val){
+                // view => model
+                return val;
+            }
+
+        })
+
+8. 指令
+
+    v-text
+    v-for
+    v-html
+
+    自定义指令
+
+        属性指令
+
+            Vue.directive(自定义指令, function (){
+                // v- 不需加上 v-  使用的时候必须用 v-自定义指令 来使用
+            })
+
+        元素指令
+
+            Vue.elementDirective(元素指令, {
+
+                bind : function (){// 元素指令 名字随便 }
+
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
