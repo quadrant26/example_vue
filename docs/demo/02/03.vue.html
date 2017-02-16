@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../js/vue.js"></script>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.21/vue.js"></script>-->
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <span v-cloak>{{msg}}</span>
+    <p v-text="msg"></p>
+
+    <strong>{{{m1}}}</strong>
+    <p v-html="m1"></p>
+</div>
+<script>
+var vm = new Vue({
+    el : "#box",
+    data : {
+        msg : "well",
+        m1 : "<em>123123</em>"
+    }
+})
+</script>
+</body>
+</html>
