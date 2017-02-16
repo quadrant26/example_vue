@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../js/vue.js"></script>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.21/vue.js"></script>-->
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" v-model="a">
+    <span>a => {{a}}</span>
+    <p>b = {{b}}</p>
+</div>
+<script>
+var vm = new Vue({
+    aa : 11,  // 自定义属性
+    data : {
+        a : 1
+    }
+}).$mount("#box")
+
+console.log(vm.$options.aa);
+
+console.log(vm.$log());
+
+    // vm.$mount("#box")
+</script>
+</body>
+</html>
