@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器 filterBy</title>
+    <script src="../../js/vue.js"></script>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.21/vue.js"></script>-->
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" v-model="a">
+    <ul>
+        <li v-for="val in arr | filterBy a">{{val}}</li>
+    </ul>
+    <ul>
+        <li v-for="val in arr | filterBy 'o'">{{val}}</li>
+    </ul>
+</div>
+<script>
+var vm = new Vue({
+    aa : 11,  // 自定义属性
+    data : {
+        arr : ['orange', 'height', 'width', 'background'],
+        a : ''
+    },
+    methods : {
+        show : function(){
+            alert(1);
+        }
+    }
+}).$mount("#box")
+
+</script>
+</body>
+</html>
