@@ -55,25 +55,32 @@ window.onload = function () {
                         act: 'get_page_count'
                     }
                 }).then(function (res) {
-                    this.pagecount = res.data.count
+                    this.pagecount = res.data.count;
                     for (var i = 0; i < this.pagecount; i++) {
                         this.myPage.push(i);
-                    }
+                    };
                 }, function (res) {
                     // 失败
                 });
+
+                //return this.pagecount;
             },
             // 获取全部的数据
             get: function (page) {
-
-                this.nowIndex = page;
+                var count = 0;
+                if(page){
+                    count = page;
+                    this.nowIndex = page-1;
+                };
+                location.hash = count;
+                console.log();
 
                 this.$http({
                     url: URL,
                     method: 'get',
                     data: {
                         act: 'get',
-                        page: page+1
+                        page: count
                     }
                 }).then(function (res) {
                     var data = eval(res.data);
@@ -138,7 +145,7 @@ window.onload = function () {
         },
         created: function () {
             this.getPage();
-            this.get(this.page);
+            this.get();
         }
     });
 }
@@ -155,6 +162,10 @@ window.onload = function () {
     </div>
 <!--已留-->
     <div class="commentOn">
+        <div class="page">
+            {{nowindex}}
+            <a href="javascript:;" v-for="page in myPage" :class="{active:$index==nowIndex}" @click="get(page+1)">{{page+1}}</a>
+        </div>
         <div class="noContent" v-if="myData.length==0">暂无留言</div>
         <div class="messList">
         	<div class="reply" v-for="val in myData" v-if="myData.length>=1" id="{{val.id}}">
@@ -168,10 +179,6 @@ window.onload = function () {
                     </span>
                 </p>
             </div>
-        </div>
-        <div class="page">
-            {{nowindex}}
-        	<a href="javascript:;" v-for="page in myPage" :class="{active:$index==nowIndex}" @click="get($index)">{{page+1}}</a>
         </div>
     </div>
 </div>
