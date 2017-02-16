@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义过滤器</title>
+    <script src="../../js/vue.js"></script>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.21/vue.js"></script>-->
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" v-model="a">
+    <p>{{b | toDou }}</p>
+</div>
+<script>
+
+Vue.filter('toDou', function (n){
+    return n < 10 ? '0'+n : n;
+})
+
+var vm = new Vue({
+    aa : 11,  // 自定义属性
+    data : {
+        arr : ['orange', 'height', 'width', 'background'],
+        a : '',
+        b : 9
+    },
+    methods : {
+        show : function(){
+            alert(1);
+        }
+    }
+}).$mount("#box")
+
+</script>
+</body>
+</html>
