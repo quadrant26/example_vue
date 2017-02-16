@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../js/vue.js"></script>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.21/vue.js"></script>-->
+</head>
+<body>
+<div id="box">
+    {{msg}}
+</div>
+<script>
+var vue = new Vue({
+    el : "#box",
+    created : function (){
+        alert("实例已经创建！")
+    },
+    beforeCompile : function (){
+        alert("编译之前");
+    },
+    compiled : function (){
+        alert("编译之后");
+    },
+    ready : function (){
+        alert("插入到文档中");
+    }
+
+})
+</script>
+</body>
+</html>
