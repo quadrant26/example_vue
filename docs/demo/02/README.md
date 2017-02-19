@@ -143,7 +143,27 @@ vue-resource
 
             })
 
+    键盘信息
 
+        @keydown.up
+
+        @keydown.a/b/c....  // 键位
+
+        @keydown.ctrl
+
+        自定义键盘事件
+
+            Vue。directive('on').keyCodes.ctrl = 17
+
+            Vue.directive('on').keyCodes.myenter = 13  =>  @keydown.myenter="show"
+
+9. 监听数据
+
+    $vm.$el/$mount/$options/....
+
+    $vm.watch(name, function (){// 程序})     // 浅度
+
+    $vm.watch(name, fncb, {deep : true})        // 深度
 
 
 
