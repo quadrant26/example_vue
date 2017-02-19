@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义键盘事件</title>
+    <script src="../../js/vue.js"></script>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.21/vue.js"></script>-->
+    <style>
+        zns-red{
+            width:100px; height:100px; background:gray;display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" @keydown.a="show">
+</div>
+<script>
+
+var vm = new Vue({
+    el : "#box",
+    data : {
+        a : 'blue'
+    },
+    methods : {
+        show : function (){
+            alert(123);
+        }
+    }
+});
+
+</script>
+</body>
+</html>
