@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue - 双向过滤器</title>
+    <script src="../../js/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    <input type="text" v-model="msg | filterhtml">
+    <p v-html="msg"></p>
+</div>
+
+<script>
+
+    Vue.filter('filterhtml', {
+        read : function (str){     // model -> view
+            return str.replace(/<[^<]+>/g, '')
+        },
+        write : function (val){  // view -> model
+            return val
+        }
+    })
+
+    var vm = new Vue({
+        aa : 11,  // 自定义属性
+        data : {
+            msg : '<strong>welcome</strong>'
+        },
+        methods : {
+            show : function(){
+                alert(1);
+            }
+        }
+    }).$mount("#box")
+
+</script>
+</body>
+</html>
