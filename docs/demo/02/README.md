@@ -1,6 +1,6 @@
 vue-resource
 
-1. HTPP 
+1. HTTP -> ajax
 
         this.$http({
 
