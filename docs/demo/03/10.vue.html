@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue - animate 动画</title>
+    <script src="../../bower_components/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    <my-aaa></my-aaa>
+</div>
+
+<script>
+
+    var Aaa = Vue.extend({
+        template : '<h3>{{msg}}</h3>',
+        data(){
+            return {
+                msg : 'ddd'
+            }
+        }
+    });
+
+    Vue.component('aaa', Aaa);
+
+    var vm = new Vue({
+        el : "#box",
+        data : {
+            bSign:true
+        },
+        components : {
+            'my-aaa' : Aaa
+        }
+    });
+
+</script>
+</body>
+</html>
