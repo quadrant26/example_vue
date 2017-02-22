@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue - 父子组件</title>
+    <script src="../../bower_components/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    <aaa></aaa>
+</div>
+
+<template id="aaa">
+    <h1>1111 -> {{msg}}</h1>
+    <bbb :m="msg"></bbb>
+</template>
+
+<script>
+
+    var vm = new Vue({
+        el : "#box",
+        data : {
+            a : 'aaa'
+        },
+        components : {
+            'aaa' : {
+                data(){
+                    return {
+                        msg : "我是父组件的数据"
+                    }
+                },
+                template : '#aaa',
+                components : {
+                    'bbb' : {
+                        /*props : {
+                            'm':String
+                        },*/
+                        props : ['m'],
+                        template : '<h3>我是bbb组件 -> {{m}}</h3>'
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
