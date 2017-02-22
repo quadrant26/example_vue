@@ -36,10 +36,11 @@
                 template : '#aaa',
                 components : {
                     'bbb' : {
-                        /*props : {
-                            'm':String
-                        },*/
-                        props : ['m', 'myMsg'],
+                        props : {
+                            'm':String,
+                            'myMsg' : Number
+                        },
+                        // props : ['m', 'myMsg'],
                         template : '<h3>我是bbb组件 -> {{m}} <br> {{myMsg}}</h3>'
                     }
                 }
