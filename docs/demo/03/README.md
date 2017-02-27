@@ -282,7 +282,13 @@
         {{$route.query | json }}        数据
 
 
+10. .vue
 
+    template -> html
+
+    style  ->   css
+
+    script  ->  js => es6 babel-loader
 
 
 
