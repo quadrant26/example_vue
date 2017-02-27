@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue - 父组件 获取子组件的数据 </title>
+    <script src="../../bower_components/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    <aaa></aaa>
+</div>
+
+<template id="aaa">
+    <span>我是父级 -- {{msg}}</span>
+    <input type="button" value="获取">
+    <bbb @child-msg="get"></bbb>
+</template>
+<template id="bbb">
+    <h3>子组件 --</h3>
+    <input type="button" value="send" @click="send">
+</template>
+<script>
+
+    var vm = new Vue({
+        el : "#box",
+        data : {
+            a : 'aaa'
+        },
+        components : {
+            'aaa' : {
+                data(){
+                    return {
+                        msg : 111,
+                        msg2 : "我是父组件的数据"
+                    }
+                },
+                template : '#aaa',
+                methods : {
+                    get(msg){
+                        alert(msg);
+                        this.msg = msg;
+                    }
+                },
+                components : {
+                    'bbb' : {
+                        data(){
+                            return {
+                                a : "我是子组件的数据！"
+                            }
+                        },
+                        // props : ['m', 'myMsg'],
+                        template : '#bbb',
+                        methods : {
+                            send : function (){
+                                this.$emit('child-msg', this.a)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
