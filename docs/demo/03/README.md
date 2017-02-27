@@ -155,7 +155,7 @@
 
 7. 组件数据传递
 
-    1、子组件获取父组件的数据\
+    1、子组件获取父组件的数据
 
         <template id="aaa">
             <bbb :m="msg" :my-msg="msg2"></bbb>
@@ -172,8 +172,114 @@
 
     2. 父级获取子级的数据
 
+        子级把数据发送给父级
+
+            vm.#emit(事件名称, 数据)
+
+        接收
+
+            v-on:/@事件名称
+
+    3. vue 2.0 废除了
+
+        vm.$dispatch(事件名， 数据)            子级向父级发送数据
+
+        vm.$broadcast(事件名, 数据)              父级向子级广播数据
+
+            配合 : event : {}
 
 
+8. slot (位置, 槽口) => 占用
+
+    1. 单个 slot
+
+        <aaa>
+            ul>li*2
+        </aaa>
+
+        <template id="aaa">
+            <slot></slot>
+        </template>
+
+    2. 多个
+
+        <slot name="ul-slot">这是默认的情况</slot>
+
+        <ul slot="ul-slot"></ul>
+
+
+9. Vue-router 根据不同的 url 地址， 出现不同的效果
+
+    0.7.13
+
+    view SPA
+
+        跳转页面
+
+        <li><a v-link="{path:'/home'}">主页</a></li>
+        <li><a v-link="{path:'/news'}">新闻</a></li>、
+
+        展示
+
+        <router-view></router-view>
+
+        // 1. 准备一个跟组件
+        var App = Vue.extend();
+
+        // 2. Home News 组件准备
+        var Home = Vue.extend({
+            template : '<h3>我是主页</h3>'
+        });
+        var News = Vue.extend({
+            template : '<h3>我是新闻</h3>'
+        });
+
+        // 3. 准备路由
+        var router = new VueRouter();
+
+        // 4. 关联
+        router.map({
+            'home' : {
+                component : Home
+            },
+            'news' : {
+                component : News
+            }
+        })
+
+        // 5. 启动路由
+        router.start(App, "#box");
+
+    跳转
+
+        router.redirect({
+            '/' : '/home'
+        })
+
+    多级嵌套
+
+        subRoutes : {
+            'login' : {
+                component : {
+                    template : "<strong>我是登录信息</strong>"
+                }
+            },
+            'reg' : {
+                component : {
+                    template : "<strong>我是注册信息</strong>"
+                }
+            }
+        }
+
+    路由的其他信息
+
+        /detail/:id
+
+        {{$route.params | json}}        当前参数
+
+        {{$route.path}}                 当前路径
+
+        {{$route.query | json }}        数据
 
 
 
