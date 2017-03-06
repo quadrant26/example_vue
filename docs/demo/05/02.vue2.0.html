@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 2.0</title>
+<script src="vue2.0.3.js"></script>
+<script>
+    window.onload = function (){
+        // vue 1.0
+        /*var Aaa = Vue.extend('aaa', {
+            template : '<h4>这是组件</h4>'
+        });
+        Vue.component('my-aaa', Aaa)*/
+
+        // vue 2.0
+        Vue.component('my-aaa', {
+            template : '#aaa'
+        })
+
+
+        new Vue({
+            el : "#box",
+            data : {
+                msg : 'welcome vue2.0'
+            }
+        })
+    }
+</script>
+</head>
+<body>
+<template id="aaa">
+    <div>
+        <h3>我是组件</h3>
+        <strong>我是加粗</strong>
+    </div>
+</template>
+<div id="box">
+    <my-aaa></my-aaa>
+    {{msg}}
+</div>
+
+</body>
+</html>
