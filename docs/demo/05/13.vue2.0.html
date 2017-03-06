@@ -4,13 +4,16 @@
 <meta charset="UTF-8">
 <title>Vue 2.0 过滤器</title>
 <script src="vue2.0.3.js"></script>
+<!--<script src="../../bower_components/vue/dist/vue.js"></script>-->
 <script>
 window.onload = function (){
 
     new Vue({
         el: "#box",
         data: {
-            a : '我是父级的数据'
+            giveData : {
+                a : '我是父组件的数据'
+            }
         },
         components : {
             'child-com' :{
@@ -18,7 +21,7 @@ window.onload = function (){
                 template : '#child',
                 methods :{
                     change(){
-                        this.msg = '被更改了'
+                        this.msg.a = '被更改了'
                     }
                 }
             }
@@ -37,9 +40,10 @@ window.onload = function (){
     </div>
 </template>
 <div id="box">
-    父级 ->  {{a}}
+    父级 ->  {{giveData.a}}
     <br>
-    <child-com :msg.sync="a"></child-com>
+    <!--vue1.0 -> <child-com :msg.sync="a"></child-com>-->
+    <child-com :msg="giveData"></child-com>
 </div>
 
 </body>
