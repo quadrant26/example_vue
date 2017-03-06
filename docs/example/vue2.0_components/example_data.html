@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 2.0 组件通信-单一事件中心管理组件通信</title>
+    <script src="vue2.0.3.js"></script>
+    <!--<script src="../../bower_components/vue/dist/vue.js"></script>-->
+    <script>
+        window.onload = function (){
+
+            var A = {
+                template : `
+            <div>
+                <span>我是A组件 -> {{a}}</span>
+                <input type="button" value="把A数据给C">
+            </div>
+        `,
+                data(){
+                    return {
+                        a : "我是a数据"
+                    }
+
+                }
+            }
+            var B = {
+                template : `
+            <div>
+                <span>我是B组件 -> {{a}}</span>
+                <input type="button" value="把B数据给C">
+            </div>
+        `,
+                data(){
+                    return {
+                        a : "我是b数据"
+                    }
+
+                }
+            }
+            var C = {
+                template : "<h3>我是C组件</h3>"
+            }
+
+            new Vue({
+                el: "#box",
+                data: {
+                    a : '我是父组件的数据'
+                },
+                components :{
+                    'com-a' : A,
+                    'com-b' : B,
+                    'com-c' : C
+                }
+
+            });
+        };
+    </script>
+
+</head>
+<body>
+
+<div id="box">
+    <com-a></com-a>
+    <com-b></com-b>
+    <br>
+    <com-c></com-c>
+</div>
+
+</body>
+</html>
