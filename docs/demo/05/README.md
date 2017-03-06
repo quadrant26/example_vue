@@ -37,11 +37,11 @@ vue2.0
 
     beforeCreate        组件实例刚刚被创建、  没有属性
 
-    created             实例已经创建完成   属性已经绑定
+    created             组件已经创建完成   属性已经绑定
 
-    beforeMount         模板编译之前
+    beforeMount         组件编译之前
 
-    mounted             模板已经编译完成
+    mounted             组件已经编译完成
 
     beforeUpdate        组件更新之前
 
@@ -69,8 +69,41 @@ vue2.0
 
     vue2.0 => Vue.config.keyCodes.ctrl = 17
 
+6. 过滤器
 
+    {{msg | currency}}
 
+        内置过滤器，全部删除了
+
+        传参 {{msg | todou '12', '4'}}
+
+    vue2.0
+
+        传参 {{msg | todou('12', '5')}}
+
+    lodash 工具库  _.debounce(fn, 2000)  // 延迟
+
+7. 组件通信
+
+    vm.$emit
+
+    vm.$on
+
+    vue 1.0 子组件更改父组件的信息，可以是同步的  :msg.sync="a"
+
+    vue 2.0 不允许更改
+
+        1. 父组件每次传一个对象给子组件 对象之间引用
+
+        2. 只是不报错 mounted(){this.b = this.msg;} -> 中转
+
+    可以单一事件管理组件通信
+
+        var Event= new Vue();
+
+        Event.$emit('事件名称', 数据)
+
+        Event.$on('事件名称', function(data){//...}.bind(this))
 
 
 
