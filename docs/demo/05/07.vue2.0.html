@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 2.0 什么周期</title>
+<script src="vue2.0.3.js"></script>
+<script>
+window.onload = function (){
+
+    new Vue({
+        el: "#box",
+        data: {
+            list : {
+                a : 'apple',
+                b : 'orange',
+                c : 'banana'
+            }
+        },
+        methods : {
+            add(){
+                this.list.push('background');
+            }
+        }
+    });
+};
+</script>
+</head>
+<body>
+
+<div id="box">
+    <input type="button" value="添加">
+    <ul>
+        <li v-for="(val, key) in list" track-by="$index">
+            {{val}} {{key}}
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
