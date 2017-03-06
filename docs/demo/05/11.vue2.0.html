@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 2.0 过滤器</title>
+<script src="vue2.0.3.js"></script>
+<script>
+window.onload = function (){
+
+    Vue.filter('todou', function (n, a, b){
+        alert(a+","+b)
+        return n < 10 ? '0'+n : n;
+    })
+
+    new Vue({
+        el: "#box",
+        data: {
+            msg : 7
+        }
+    });
+};
+</script>
+
+</head>
+<body>
+
+<div id="box">
+    {{msg | todou('12', '4')}}
+</div>
+
+</body>
+</html>
