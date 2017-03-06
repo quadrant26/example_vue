@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue 2.0 过滤器</title>
+<script src="../../bower_components/vue/dist/vue.js"></script>
+<script>
+window.onload = function (){
+
+    new Vue({
+        el: "#box",
+        data: {
+            msg : 12312,
+            msg2 : {a:1, b:2, c:3},
+        },
+        methods : {
+            change(){
+                alert("改变了！")
+            }
+        }
+    });
+};
+</script>
+
+</head>
+<body>
+
+<div id="box">
+    {{msg | currency}}
+    {{msg2 | json }}
+</div>
+
+</body>
+</html>
