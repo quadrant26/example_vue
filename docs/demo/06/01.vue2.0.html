@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 2.0</title>
+    <style>
+        p{
+            width:100px;
+            height:100px;
+            background-color:red;
+        }
+    </style>
+    <script src="vue2.0.3.js"></script>
+    <script>
+        window.onload = function () {
+            new Vue({
+                el : "#box",
+                data : {
+                    show : false
+                },
+                methods :{
+
+                }
+
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="box">
+    <input type="button" value="点击显示隐藏" @click="show=!show">
+    <p v-show="show"></p>
+</div>
+</body>
+</html>
