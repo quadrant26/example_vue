@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 2.0</title>
+    <style>
+        p{
+            width:100px;
+            height:100px;
+            background-color:red;
+        }
+
+        .fade-enter-active,.fade-leave-active{
+            transition:1s all ease;
+        }
+        .fade-enter-active{
+            opacity: 1;
+            width:200px;
+            height:200px;
+        }
+        .fade-leave-active{
+            opacity: 0;
+            width:100px;
+            height:100px;
+        }
+        .fade-enter, .fade-leave{
+            opacity: 0;
+            width:100px;
+            height:100px;
+        }
+
+    </style>
+    <script src="vue2.0.3.js"></script>
+    <script>
+        window.onload = function () {
+            new Vue({
+                el : "#box",
+                data : {
+                    show : false
+                },
+                methods :{
+                    beforeEenter(el){
+                        console.log("动画 enter 之前");
+                        console.log(el);
+                    },
+                    enter(){
+                        console.log("enter")
+                    },
+                    afterEnter(el){
+                        console.log("动画 进入 之后");
+                        el.style.background = "blue"
+                    },
+                    beforeLeave(){
+                        console.log("消失 leave 之前");
+                    },
+                    leave(){
+                        console.log("leave");
+                    },
+                    afterLeave(el){
+                        console.log("消失 leave 之后");
+                        el.style.background = "red"
+                    }
+
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="box">
+    <input type="button" value="点击显示隐藏" @click="show=!show">
+
+    <transition name="fade" @before-enter="beforeEenter" @enter="enter" @after-enter="afterEnter" @before-leave="beforeLeave" @leave="leave" @after-leave="afterLeave">
+        <p v-show="show"></p>
+    </transition>
+</div>
+</body>
+</html>
