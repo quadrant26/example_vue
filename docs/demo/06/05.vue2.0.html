@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 2.0</title>
+    <style>
+        p{
+            margin:10px auto;
+            width:100px;
+            height:100px;
+            background-color:red;
+            color:#fff;
+            font-size:20px;
+        }
+
+        .p1{
+            margin-top: 200px;
+        }
+
+        .fade-enter-active,.fade-leave-active{
+            transition:1s all ease;
+        }
+        .fade-enter-active{
+            opacity: 1;
+            width:200px;
+            height:200px;
+        }
+        .fade-leave-active{
+            opacity: 0;
+            width:100px;
+            height:100px;
+        }
+        .fade-enter, .fade-leave{
+            opacity: 0;
+            width:100px;
+            height:100px;
+        }
+
+    </style>
+    <script src="vue2.0.3.js"></script>
+    <link rel="stylesheet" href="../../bower_components/animate.css/animate.css">
+    <script>
+        window.onload = function () {
+
+
+
+            new Vue({
+                el : "#box",
+                data : {
+                    show : '',
+                    list : ['apple', 'banana', 'orange', 'pear']
+                },
+                computed : {
+                    lists : function (){
+                        var arr = [];
+                        this.list.forEach(function (val){
+                            if(val.indexOf(this.show) != -1){
+                                arr.push(val)
+                            }
+                        }.bind(this))
+                        return arr;
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="box">
+    <input type="text" v-model="show">
+
+    <transition-group enter-active-class="bounceInLeft" leave-active-class="bounceOutRight">
+        <p v-show="show" class="animated" v-for="(val,index) in lists" class="animated" :key="index">{{val}}</p>
+    </transition-group>
+
+
+</div>
+</body>
+</html>
