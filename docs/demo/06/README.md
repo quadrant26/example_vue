@@ -81,6 +81,8 @@ Vue2.0
 
 4. vue-cli
 
+    vue init webpack-simple projectname
+
     1.0
         new Vue({
             el : "#app"
