@@ -5,9 +5,12 @@
     
     <p>
       <router-link to="/home">主页</router-link>
-      <router-link to="/news">新闻页</router-link>
+      <router-link to="/news" @click="ale">新闻页</router-link>
     </p>
-    <router-view></router-view>
+    <transition enter-active-class="animated bounceInLeft" leave-active-class="animated zoomOutRight">
+      <router-view></router-view>
+    </transition>
+    
   </div>
 </template>
 
@@ -18,6 +21,11 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods : {
+    ale(){
+      alert(123);
     }
   }
 }
