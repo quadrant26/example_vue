@@ -40,3 +40,38 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 
     - webpack.config.js
 
+3. Loading
+
+    在加载 loading 的时候 loading 都需要在重头开始加载
+    
+        new VueRouter({
+            ..
+            scrollBehavior: () => ({ y: 0 }),
+            ..
+        })
+        
+
+4. axios
+
+    // 发送请求
+    axios.interceptors.request.use(function(config) {
+        return config;
+    }, function(error) {
+        return Promise.reject(error)
+    })
+
+    // 接收请求
+    axios.interceptors.response.use(function(response) {
+        return response;
+    }, function(error) {
+        return Promise.reject(error);
+    })
+
+    // 请求的跟路径
+    axios.defaults.baseURL = "localhost:port" 
+
+    // 其他页面在使用 axios 的时候直接 this.$http 就可以了
+    Vue.prototype.$http = axios        
+
+    // 设置post头部 信息
+    axios.dafaults.headers/post['Content-Type]' = application/x-www-form-urlencodeed';
