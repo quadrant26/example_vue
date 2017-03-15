@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <NavView v-show="true"></NavView>
-    <div class="content">
+    <transition enter-active-class="animated bounceInLeft" leave-active-class="animated bounceOutRight">
       <router-view></router-view>
-    </div>
+    </transition>
     <FooterView v-show="true"></FooterView>
   </div>
 </template>
@@ -11,6 +11,7 @@
 <script>
 import NavView from './components/Nav.vue';
 import FooterView from './components/Footer.vue'
+import HomeView from './components/Home.vue'
 
 //import {mapGetters, mapActions} from 'vuex'
 
@@ -20,6 +21,7 @@ export default {
   // ]),
   components : {
     NavView,
+    HomeView,
     FooterView
   },
   mounted(){
@@ -33,4 +35,5 @@ export default {
 
 <style>
   @import './assets/css/index.css';
+  @import './assets/css/animate.css';
 </style>
