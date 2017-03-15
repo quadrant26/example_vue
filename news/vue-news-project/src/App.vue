@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <NavView v-show="true"></NavView>
+    <div class="content">
+      <router-view></router-view>
+    </div>
+    <FooterView v-show="true"></FooterView>
   </div>
 </template>
 
 <script>
+import NavView from './components/Nav.vue';
+import FooterView from './components/Footer.vue'
+
+//import {mapGetters, mapActions} from 'vuex'
+
 export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+  // computed:mapGetters([
+  //   'headerShow'
+  // ]),
+  components : {
+    NavView,
+    FooterView
+  },
+  mounted(){
+
+  },
+  methods(){
+
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
+  @import './assets/css/index.css';
 </style>
