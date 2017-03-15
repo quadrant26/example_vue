@@ -62,5 +62,5 @@
 </script>
 
 <style scoped>
-    .mt40{ marign-top:40px;}
+    .mt40{ margin-top:40px;}
 </style>
