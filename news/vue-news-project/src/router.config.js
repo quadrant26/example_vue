@@ -8,5 +8,6 @@ export default[
     { path : '/follow', component: Follow },
     { path : '/column', component: Column },
     { path : '/user-info', component : UserInfo },
-    { path : '*', redirect: '/home'}
+    { path : '*', redirect: '/home'},
+    { path : '/', redirect: '/home'}
 ]
