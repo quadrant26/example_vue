@@ -17,5 +17,6 @@ require("./assets/css/base.css")
 new Vue({
   router : router,
   el: '#app',
+  store: Store,
   render: h => h(App)
 })
