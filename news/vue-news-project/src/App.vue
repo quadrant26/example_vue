@@ -1,7 +1,8 @@
 <template>
   <div id="app">
+    <loading v-show="loading"></loading>
     <NavView v-show="headerShow"></NavView>
-    <transition enter-active-class="animated bounceInLeft" leave-active-class="animated bounceOutRight">
+    <transition enter-active-class="animated bounceInLeft" leave-active-class="animated fadeOut">
       <router-view></router-view>
     </transition>
     <FooterView v-show="true"></FooterView>
@@ -17,11 +18,11 @@ import {mapGetters, mapActions} from 'vuex'
 
 export default {
   computed:mapGetters([
-    'headerShow'
+    'headerShow',
+    'loading'
   ]),
   watch : {
     $route(to, from){
-      console.log(to.path);
       if(to.path == '/user-info'){
         this.$store.dispatch('hideHeader')
       }else{
