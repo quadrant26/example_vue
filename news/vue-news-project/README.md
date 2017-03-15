@@ -54,6 +54,7 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 4. axios
 
     // 发送请求
+        
         axios.interceptors.request.use(function(config) {
             return config;
         }, function(error) {
@@ -61,6 +62,7 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
         })
 
     // 接收请求
+        
         axios.interceptors.response.use(function(response) {
             return response;
         }, function(error) {
@@ -68,10 +70,13 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
         })
 
     // 请求的跟路径
+        
         axios.defaults.baseURL = "localhost:port"
 
     // 其他页面在使用 axios 的时候直接 this.$http 就可以了
+        
         Vue.prototype.$http = axios
 
     // 设置post头部 信息
+        
         axios.dafaults.headers/post['Content-Type]' = application/x-www-form-urlencodeed';
