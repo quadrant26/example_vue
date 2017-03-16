@@ -8,8 +8,13 @@ import RouterConfig from './router.config.js'
 import axios from 'axios'
 import Loading from './components/loading/index.js'
 
+import filters from './filters/index.js'
+
 Vue.use(VueRouter);
 Vue.use(Loading);
+
+// 遍历循环所有的过滤器
+Object.keys(filters).forEach((key) => Vue.filter(key, filters[key]))
 
 // axios 配置
 axios.interceptors.request.use(function(config) {
@@ -27,6 +32,7 @@ axios.interceptors.response.use(function(response) {
     return Promise.reject(error);
 })
 
+Vue.prototype.$http = axios;
 
 const router = new VueRouter({
     mode: "history",
