@@ -14,7 +14,7 @@
 	    </ul>
 	    <div class="footbox">
 	        <input type="button" value="登 录" class="login-btn"/>
-	        <a href="javascript:;" class="tishi">忘记密码？</a>
+	        <a href="javascript:;" class="tishi">忘记密码 ？</a>
 	    </div>
     </div>
 </template>
