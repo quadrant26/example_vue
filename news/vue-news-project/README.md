@@ -80,3 +80,27 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
     // 设置post头部 信息
 
         axios.dafaults.headers/post['Content-Type]' = application/x-www-form-urlencodeed';
+
+5. Vuex
+
+    Store
+
+        - actions
+
+        - getters
+
+        - mutations
+
+        - idnex
+
+6. filter
+
+    filters
+
+        - index
+
+        - filterTime    
+
+        import filters from './filters/index.js'
+
+        Object.key(filters).forEach((key) => filter(key, filters(key)) )
