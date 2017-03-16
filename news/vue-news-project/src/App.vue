@@ -5,7 +5,7 @@
     <transition enter-active-class="animated bounceInLeft" leave-active-class="animated fadeOut">
       <router-view></router-view>
     </transition>
-    <FooterView v-show="true"></FooterView>
+    <FooterView v-show="footerShow"></FooterView>
   </div>
 </template>
 
@@ -19,15 +19,14 @@ import {mapGetters, mapActions} from 'vuex'
 export default {
   computed:mapGetters([
     'headerShow',
-    'loading'
+    'loading',
+    'footerShow'
   ]),
   watch : {
     $route(to, from){
-      if(to.path == '/user-info'){
-        this.$store.dispatch('hideHeader')
-      }else{
-        this.$store.dispatch('showHeader')
-      }
+      var path = to.path.substring(1);
+      this.headerChange(path);
+      this.footerChange(path);
     }
   },
   components : {
@@ -36,10 +35,25 @@ export default {
     FooterView
   },
   mounted(){
-
+    var path=this.$route.path.substring(1);
+    this.headerChange(path);
+    this.footerChange(path);
   },
-  methods(){
-
+  methods : {
+    headerChange(path){
+      if(path == "user-info" || path == "user-reg" || path == "user-login"){
+        this.$store.dispatch('hideHeader')
+      }else{
+        this.$store.dispatch('showHeader')
+      }
+    },
+    footerChange(path){
+      if(path.indexOf("article") != -1 || path == "user-reg" || path == "user-login" ){
+        this.$store.dispatch('hideFooter')
+      }else{
+        this.$store.dispatch('showFooter')
+      }
+    }
   }
 }
 </script>
