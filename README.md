@@ -5,3 +5,5 @@ Vue
     npm install bower -g
 
         bower install vue#1.0.28 vue-router#0.7.13 bootstrap animate.css
+
+        # 之后代表模块的版本号
