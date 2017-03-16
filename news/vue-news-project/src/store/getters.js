@@ -1,8 +1,11 @@
 export default {
     headerShow: (state) => {
-        return state.header
+        return state.header;
     },
     loading: (state) => {
-        return state.loading
+        return state.loading;
+    },
+    footerShow: (state) => {
+        return state.footer;
     }
 }

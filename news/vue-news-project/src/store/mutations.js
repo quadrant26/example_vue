@@ -2,7 +2,8 @@ import getters from './getters.js'
 
 const state = {
     header: true,
-    laoding: false
+    laoding: false,
+    footer:true
 }
 
 const mutations = {
@@ -12,11 +13,17 @@ const mutations = {
     hideHeader(state) {
         state.header = false
     },
-    showLaoding(state) {
+    showLoading(state) {
         state.loading = true
     },
     hideLoading(state) {
         state.loading = false
+    },
+    showFooter(state){
+        state.footer = true
+    },
+    hideFooter(state){
+        state.footer = false
     }
 }
 

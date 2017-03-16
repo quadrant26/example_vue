@@ -5,8 +5,6 @@ import actions from './actions.js'
 
 Vue.use(Vuex);
 
-console.log(mutations.getters);
-
 export default new Vuex.Store({
 	modules:{
 		mutations
