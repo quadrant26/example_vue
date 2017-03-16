@@ -14,6 +14,6 @@ export default[
     { path : '/article/:id', component : Article },
     { path : '/user-login', component : UserLogin },
     { path : '/user-reg', component : UserReg },
-    { path : '*', redirect: '/home'},
-    { path : '/', redirect: '/home'}
+    { path : '*', redirect: '/home' },
+    { path : '/', redirect: '/home' }
 ]
