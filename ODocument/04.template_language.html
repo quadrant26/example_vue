@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vue 模版语法</title>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<h1>模版语法</h1>
+<div id="app">
+	<p>{{message}}</p>
+	<p v-once>This will never {{ a_nochange }}</p>
+	<div v-html="html"></div>
+
+
+	<p><a v-bind:href="bindhref">bindhref</a></p>
+	<div v-bind:id="dynamicId"></div>
+
+	<p>{{message + " toString "}}</p>
+	<p>{{ok ? 'Yes' : 'No'}}</p>
+	<p>{{message.split('').reverse().join('')}}</p>
+
+	<p v-if="seen" v-on:click="clickmethod">{{message}}</p>
+
+	<div>
+		<h2>过滤器</h2>
+		<p>{{message | captitalize}}</p>
+	</div>
+</div>
+
+<script>
+
+var vm = new Vue({
+	el : "#app",
+	data : {
+		message : "first template language",
+		a_nochange : "no changed",
+		html : "<h4>v-html 指令</h4>",
+		bindhref : "http://www.baidu.com",
+		dynamicId : "uidname",
+		ok : "nb",
+		seen : true
+	},
+	methods : {
+		clickmethod(){
+			this.seen = !this.seen;
+		}
+	},
+	filters : {
+		captitalize(value){
+			if(!value)return '';
+			value = value.toString()
+			return value.charAt(0).toUpperCase() + value.slice(1);
+		}
+	}
+})
+
+vm.$data.a_nochange = "wo will to changed";
+console.log(vm.$data.a_nochange);
+
+</script>
+</body>
+</html>

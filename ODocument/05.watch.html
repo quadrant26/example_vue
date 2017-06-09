@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vue 计算属性</title>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<h1>计算属性</h1>
+<div id="app">
+	<input v-model="example0"/>
+	<input v-model="example1"/>
+	<input v-model="example2.inner0"/>
+</div>
+
+<script>
+
+var vm = new Vue({
+	el : "#app",
+	data : {
+		example0:"",
+		example1:"",
+		example2:{
+			inner0:1,
+　　　　　　 innner1:2
+　　　　}
+	},
+	watch:{
+　　		example0(curVal,oldVal){
+　　　　　　　	console.log(curVal,oldVal);
+　　		},
+　　　　　example1:'a',//值可以为methods的方法名
+　　　　　example2:{
+　　　　　　　//注意：当观察的数据为对象或数组时，curVal和oldVal是相等的，因为这两个形参指向的是同一个数据对象
+　　　　　　　handler(curVal,oldVal){
+　　　　　　　　　　console.log(curVal,oldVal)
+　　　　　　　},
+　　　　　　　deep:true
+　　　　　}
+　　},
+	methods:{
+　　		a(curVal,oldVal){
+　　　　　		console.log(curVal,oldVal)
+　　		}
+　　}
+});
+
+
+
+</script>
+</body>
+</html>
