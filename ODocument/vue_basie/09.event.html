@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vue 事件</title>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<h1> 事件</h1>
+
+<div id="example">
+    <button v-on:click="count += 1">增加1</button>
+    <button v-on:click="great">methods</button>
+    <button v-on:click="say('hi')">arguments</button>
+  	<button v-on:click="warn('hi', $event)">arguments</button>
+    <p>这个按钮被点击了 {{count}}</p>
+
+    <input @keyup.alt.67="clear" v-model="val">
+    <!-- Ctrl + Click -->
+    <div @click.ctrl="doSomething">Do something</div>
+</div>
+
+
+<script>
+
+var vm = new Vue({
+    el : '#example',
+    data : {
+        count : 1,
+        name : "vue.js",
+        val : ""
+    },
+    methods : {
+        great : function (event){
+            console.log('hello' + this.name + "!");
+            console.log(event.target.tagName);
+        },
+        say : function (message){
+            console.log(message);
+        },
+        warn : function (msg, event){
+            if (event) event.preventDefault()
+            console.log(msg)
+        },
+        clear : function (){
+            console.log(123);
+            this.val = "";
+        },
+        doSomething : function (){
+            console.log("按住了 ctrl 键");
+        }
+    }
+})
+
+</script>
+</body>
+</html>
