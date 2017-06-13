@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vue style class 绑定</title>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<h1>style 绑定</h1>
+<div id="watch-example">
+	<div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">123</div>
+	<div v-bind:style="styleObject">58</div>
+	<div v-bind:style="[baseStyles, overridingStyles]">58</div>
+</div>
+
+<script>
+Vue.component("my-component", {
+	template : '<p class="foo bar">component</p>'
+})
+
+var vm = new Vue({
+	el : "#watch-example",
+	data : {
+		activeColor: 'red',
+ 		fontSize: 30,
+		styleObject: {
+		    color: 'red',
+		    fontSize: '13px'
+	  	},
+		baseStyles : {
+			fontSize : '56px'
+		},
+		overridingStyles : {
+			color: "#ff0"
+		}
+	},
+	computed : {
+		classObject2 : function (){
+			return {
+				active : this.isactive && !this.error,
+				'text-danger' : this.error && this.error.type === 'fatal'
+			}
+		}
+	}
+});
+
+vm.fullName = "John Doe"
+
+
+
+</script>
+</body>
+</html>
