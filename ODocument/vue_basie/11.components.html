@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vue 组件</title>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<h1>组件</h1>
+
+<div id="example">
+    <my-component message="hello"></my-component>
+</div>
+
+
+<script>
+
+Vue.component("my-component", {
+    props : ['message'],
+    template : "<div>{{ message }}</div>"
+})
+
+var vm = new Vue({
+    el : '#example'
+});
+
+</script>
+</body>
+</html>
