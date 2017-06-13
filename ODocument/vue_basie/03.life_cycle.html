@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vue 生命周期</title>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<h1>生命周期</h1>
+<div id="app">
+	<p>{{message}}</p>
+</div>
+
+<script>
+
+var vm = new Vue({
+	el : "#app",
+	data : {
+		message : "生命周期",
+		status : "created"
+	},
+	beforeCreate : function (){
+		console.log("创建之前" + this.status);
+	},
+	created : function (){
+		console.log("已经创建" + this.status);
+	},
+	beforeMount : function (){
+		console.log("元素绑定之前" + this.$el.nodeName);
+	},
+	mounted : function (){
+		console.log("元素已经绑定" + this.$el.nodeName);
+	},
+	beforeDestroy : function (){
+		console.log("正在准备销毁");
+	},
+	destroyed : function (){
+		console.log("已经销毁")
+	}
+});
+
+console.log(vm);
+
+vm.$destroy();
+
+</script>
+</body>
+</html>
