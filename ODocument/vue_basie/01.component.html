@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vue Compontent</title>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+	<p>{{message}}</p>
+	<div>
+		<item-compontent v-for="item in language" v-bind:todo="item"></item-compontent>
+	</div>
+</div>
+
+<script>
+Vue.component("item-component", {
+	props : ['todo'],
+	template : '<p>{{ todo.text }}</p>'
+})
+var app = new Vue({
+	el : "#app",
+	data : {
+		message : "Hello, Vue",
+		language : [
+			{text : "python"},
+			{text : "javascript"},
+			{text : "java"},
+			{text : "typescript"}
+		]
+	}
+})
+</script>
+</body>
+</html>
