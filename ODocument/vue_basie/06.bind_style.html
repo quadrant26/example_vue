@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vue style class 绑定</title>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<h1>class 绑定</h1>
+<div id="watch-example">
+	<p class="static" v-bind:class="{active : isactive, 'text-danger' : hasError}">Ask a yes/no question: </p>
+	<p class="static" v-bind:class="classObject">classObject</p>
+	<p class="static" v-bind:class="classObject2">classObject2</p>
+
+	<p class="static" v-bind:class="[activeClass, errorClass]">array</p>
+	<div v-bind:class="[isactive ? activeClass : '', errorClass]">三元表达式</div>
+
+	<div>
+		<my-component class="bar boo"></my-component>
+	</div>
+</div>
+
+<script>
+Vue.component("my-component", {
+	template : '<p class="foo bar">component</p>'
+})
+
+var vm = new Vue({
+	el : "#watch-example",
+	data : {
+		isactive : true,
+		hasError : false,
+		error : null,
+		classObject : {
+			active : true,
+			'text-danger' : false
+		},
+		activeClass : 'avtive',
+		errorClass : 'text-danger'
+	},
+	computed : {
+		classObject2 : function (){
+			return {
+				active : this.isactive && !this.error,
+				'text-danger' : this.error && this.error.type === 'fatal'
+			}
+		}
+	}
+});
+
+vm.fullName = "John Doe"
+
+
+
+</script>
+</body>
+</html>
